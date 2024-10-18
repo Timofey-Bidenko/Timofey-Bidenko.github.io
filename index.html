@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="overlay" id="mainOverlay">
+        <div class="modal shadowBlue hideScrollbar popUpAnim" id="mainModal">
+            <div class="mTitle">
+                <h4>My Notes</h4>
+            </div>
+            <!-- <div class="mTitle sTitle">
+                <input type="text" placeholder="Search Notes" onkeyup="searchFilter()" class="textShadowCyan"
+                    id="mainSearchInput">
+            </div>
+            <div class="mTitle sTitle fTitle">
+                <select id="primarySelect" onchange="primarySelectionChange()" class="textShadowCyan">
+                    <option value="null">Sort By (Select)</option>
+                    <option value="boost">Boost</option>
+                    <option value="reward">Reward</option>
+                </select>
+                <select id="categorySelect" onchange="categorySelectionChanged()" class="textShadowCyan">
+                    <option value="null">(Select Category)</option>
+                </select>
+                <select id="subCategorySelect" onchange="subCategorySelectionChanged()" class="textShadowCyan">
+                    <option value="null">(Select Subcategory)</option>
+                </select>
+            </div> -->
+            <div class="listItem none" id="noteListChildTemplate">
+                <h4 class="defaultText">Note Info</h4>
+                <h4 class="shadowCyan editButton defaultText">Edit</h4>
+            </div>
+            <div class="listItem" id="createNote" style="order: 99;">
+                <h4 class="defaultText">Create New Note</h4>
+                <div class="button openXButton shadowGreen"></div>
+            </div>
+        </div>
+        <div class="secondaryModal hideScrollbar shadowBlue popUpAnim" id="secondaryModal">
+            <div class="mTitle">
+                <h4 id="secMTitle"></h4>
+                <div class="button closeXButton shadowRed" id="closeSecondaryModal"></div>
+            </div>
+            <div class="listItem task name none popUpAnim verified" id="setName">
+                <input type="text" class="searchInput round" placeholder="Note Name">
+            </div>
+            <div class="listItem task none popUpAnim" id="todoTemplate">
+                <div class="toggleButton xIcon"></div>
+                <input type="text" class="searchInput" placeholder="To-Do Thingy   ( Insert   Text )">
+                <div class="img"></div>
+            </div>
+            <div class="listItem functional none popUpAnim" id="addToDo" style="order: 99;">
+                <h4 class="defaultText">Add To-Do</h4>
+                <div class="button openXButton shadowGreen"></div>
+            </div>
+            <div style="order: 100;" id="editNote">
+                <h3 class="shadowRed boxRed defaultText h3button" id="deleteNote">Delete The Note</h3>
+                <h3 class="shadowGreen boxGreen defaultText h3button" id="noteInfo">Note Info</h3>
+            </div>
+        </div>
+    </div>
+    <div class="overlay none" id="secondaryOverlay">
+        <div class="promptModal shadowBlue hideScrollbar popUpAnim" id="deletePrompt">
+            <div class="modalContents hideScrollbar">
+                <h2 class="defaultText">Are you sure you are willing to delete the note?</h2>
+                <h2 class="defaultText">All of the data saved in this note will be deleted forever. </h2>
+                <h2 class="defaultText">Once you confirm, the process can NOT be undone.</h2>
+            </div>
+            <div class="modalOther">
+                <h3 class="shadowRed boxRed defaultText h3button" id="deleteNoteConfirmed">Confirm Deletion</h3>
+            </div>
+        </div>
+        <div class="promptModal shadowBlue hideScrollbar popUpAnim" id="infoPrompt">
+            <div class="modalContents hideScrollbar">
+                <div class="infobox" id="infoboxTemplate">
+                    <h2></h2>
+                    <h3></h3>
+                </div>
+            </div>
+            <div class="modalOther">
+                <h3 class="shadowRed boxRed defaultText h3button" id="closeInfoPrompt">Close Info</h3>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
