@@ -1,0 +1,678 @@
+:root {
+    /* Values? (If needed)*/
+    --boxShadowSize: 3px;
+    --boxShadowSizeN: -3px;
+    --boxShadowFade: 10px;
+
+    --textShadowFade: 1px;
+
+    --secModalClosed: 0;
+    --amountOfSelects: 1;
+
+    /* Color Palette Fast Config */
+    --value: 62%;
+    --saturation: 100%;
+    --darkValue: 44%;
+    --darkSaturation: 62%;
+    /* Colors */
+    --mainBgColor: rgba(21, 21, 21, 0.95);
+    --secondaryBgColor: rgba(21, 21, 21, 0.2);
+    --transparentColor: rgba(0, 0, 0, 0);
+    --textColor: rgba(245, 245, 245, 1);
+    --secondaryColor: rgba(31, 31, 31, 1);
+    /* Colors (Palette Basic [RGB]) */
+    --red: hsl(0, var(--saturation), var(--value));
+    --darkRed: hsl(0, var(--darkSaturation), var(--darkValue));
+    --green: hsl(117, var(--saturation), var(--value));
+    --darkGreen: hsl(117, var(--darkSaturation), var(--darkValue));
+    --blue: hsl(224, var(--saturation), var(--value));
+    --darkBlue: hsl(224, var(--darkSaturation), var(--darkValue));
+    /* More Colors (Palette Extra) */
+    --white: hsl(0, 0%, var(--value));
+    --darkWhite: hsl(0, 0%, var(--darkValue));
+    --orange: hsl(30, var(--saturation), var(--value));
+    --darkOrange: hsl(30, var(--darkSaturation), var(--darkValue));
+    --yellow: hsl(52, var(--saturation), var(--value));
+    --darkYellow: hsl(52, var(--darkSaturation), var(--darkValue));
+    --cyan: hsl(170, var(--saturation), var(--value));
+    --darkCyan: hsl(170, var(--darkSaturation), var(--darkValue));
+    --purple: hsl(270, var(--saturation), var(--value));
+    --darkPurple: hsl(270, var(--darkSaturation), var(--darkValue));
+    --pink: hsl(300, var(--saturation), var(--value));
+    --darkPink: hsl(300, var(--darkSaturation), var(--darkValue));
+    /* Anim Config */
+    --tweenTime: 0.7s;
+    --toggleTime: 0.25s;
+}
+
+
+html,
+body {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /*gap: 5vh;*/
+
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--mainBgColor);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    height: calc(90% + (5% * var(--secModalClosed)));
+    width: calc(30% + (65% * var(--secModalClosed)));
+
+    background-color: var(--blue);
+    border: 2px solid var(--darkBlue);
+    border-radius: 12px;
+
+    padding: 8px;
+
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+.promptModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 50%;
+    width: 40%;
+
+    background-color: var(--blue);
+    border: 2px solid var(--darkBlue);
+    border-radius: 12px;
+
+    padding: 8px;
+}
+.modalContents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 80%;
+    width: 100%;
+
+    background-color: var(--secondaryBgColor);
+    border: 2px solid var(--darkBlue);
+    border-radius: 8px;
+
+    overflow-y: scroll;
+    box-sizing: border-box;
+
+    padding: 0 2%;
+}
+
+.infobox {
+    width: 100%;
+}
+
+.infobox h2 {
+    width: 100%;
+    margin: 0;
+    color: var(--green);
+    text-shadow:
+        -1px -1px var(--textShadowFade) var(--darkGreen),
+        1px -1px var(--textShadowFade) var(--darkGreen),
+        -1px 1px var(--textShadowFade) var(--darkGreen),
+        1px 1px var(--textShadowFade) var(--darkGreen);
+}
+
+.infobox h3 {
+    width: 100%;
+    margin: 0;
+    color: var(--yellow);
+    text-shadow:
+        -1px -1px var(--textShadowFade) var(--darkGreen),
+        1px -1px var(--textShadowFade) var(--darkYellow),
+        -1px 1px var(--textShadowFade) var(--darkYellow),
+        1px 1px var(--textShadowFade) var(--darkYellow);
+    margin-bottom: 20px;
+    padding-left: 1.5%;
+    box-sizing: border-box;
+}
+
+.mTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--textColor);
+
+    width: calc(100% - 20px);
+    height: 4vh;
+    text-shadow: 1px 1px 5px var(--green),
+        -1px -1px 5px var(--pink);
+    font-size: 3.2vh;
+
+    border-radius: 8px;
+    background-color: var(--darkBlue);
+
+    padding: 12px 10px;
+    margin-bottom: 8px;
+}
+
+.sTitle {
+    height: calc(4vh + 24px);
+    width: 100%;
+    padding: 0;
+}
+
+.fTitle {
+    height: calc(4vh + 6px);
+    display: flex;
+    flex-direction: row;
+}
+
+.fMTitle {
+    height: calc((4vh + 6px) * var(--amountOfSelects));
+    flex-direction: column;
+}
+
+.sTitle input {
+    background-color: var(--transparentColor);
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    color: var(--cyan);
+    border: 2px solid var(--secondaryBgColor);
+
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+.sTitle input::placeholder {
+    color: var(--textColor);
+    text-shadow:
+        -1px -1px var(--textShadowFade) var(--secondaryColor),
+        1px -1px var(--textShadowFade) var(--secondaryColor),
+        -1px 1px var(--textShadowFade) var(--secondaryColor),
+        1px 1px var(--textShadowFade) var(--secondaryColor);
+}
+
+.sTitle input:focus {
+    outline: none;
+    border: 2px solid var(--cyan);
+}
+
+.fTitle select {
+    background-color: var(--transparentColor);
+    border-radius: 8px;
+    flex-grow: 1;
+    height: 100%;
+    color: var(--cyan);
+    border: 2px solid var(--secondaryBgColor);
+
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+.fMTitle select {
+    background-color: var(--transparentColor);
+    border-radius: 8px;
+    flex-grow: 1;
+    width: 100%;
+    max-height: calc(100% * var(--amountOfSelects));
+    color: var(--cyan);
+    border: 2px solid var(--secondaryBgColor);
+
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+.fTitle select:focus,
+.fMTitle select:focus {
+    outline: none;
+    border: 2px solid var(--cyan);
+}
+
+.listItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--darkBlue);
+    width: 100%;
+    min-height: calc(8vh - 8px);
+    padding: 4px 2%;
+    border-radius: 8px;
+    margin-bottom: 4px;
+
+    box-sizing: border-box;
+}
+
+.listItem h4 {
+    color: var(--textColor);
+}
+
+.listItem.task {
+    align-self: flex-start;
+    padding: 0;
+}
+
+.listItem .img {
+    cursor: pointer;
+    height: calc(100% - 3px);
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    background-image: url(delete.png);
+    background-color: var(--transparentColor);
+    border: 2px solid var(--secondaryBgColor);
+    border-radius: 0 8px 8px 0;
+}
+
+.functional {
+    align-self: flex-end;
+    padding: 8px 2%;
+    width: 96%;
+}
+
+.searchInput {
+  background-color: var(--transparentColor);
+  /* border-radius: 0 8px 8px 0; */
+  min-height: 100%;
+  max-height: 100%;
+  min-width: 10px;
+  flex-grow: 1;
+  color: var(--cyan);
+  border: 2px solid var(--secondaryBgColor);
+
+  padding: 0 1%;
+  box-sizing: border-box;
+  font-size: larger;
+
+  text-shadow:
+        -1px -1px var(--textShadowFade) var(--secondaryColor),
+        1px -1px var(--textShadowFade) var(--secondaryColor),
+        -1px 1px var(--textShadowFade) var(--secondaryColor),
+        1px 1px var(--textShadowFade) var(--secondaryColor);
+}
+
+.searchInput.round {
+    border-radius: 8px;
+}
+
+.searchInput::placeholder {
+    color: var(--textColor);
+    font-size: 80%;
+    text-shadow:
+        -1px -1px var(--textShadowFade) var(--secondaryColor),
+        1px -1px var(--textShadowFade) var(--secondaryColor),
+        -1px 1px var(--textShadowFade) var(--secondaryColor),
+        1px 1px var(--textShadowFade) var(--secondaryColor);
+}
+
+.searchInput:focus {
+    outline: none;
+    border: 2px solid var(--cyan);
+    text-shadow: none;
+}
+
+.done {
+    text-decoration: line-through;
+    text-decoration-color: var(--darkBlue);
+    text-decoration-thickness: 5px;
+}
+
+
+.editButton {
+    max-width: fit-content;
+    max-height: 4vh;
+    flex-grow: 1;
+    border-radius: 8px;
+    background-color: var(--cyan);
+    border: 2px solid var(--darkCyan);
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#editNote {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.h3button {
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: center;
+    max-width: fit-content;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.button {
+    cursor: pointer;
+    position: relative;
+    margin: 2px;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+}
+
+.openXButton {
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-grow: 1;
+    background-color: var(--green);
+    border: 2px solid var(--darkGreen);
+}
+
+.closeXButton {
+    align-self: flex-start;
+    min-height: 4vh;
+    max-height: 4vh;
+    background-color: var(--red);
+    border: 2px solid var(--darkRed);
+}
+
+.button:before,
+.button:after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 10%;
+    background-color: var(--textColor);
+    border-radius: 4px;
+    top: 45%;
+    /*box-shadow:0 0 2px 0 #ccc;*/
+}
+
+.closeXButton:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+    left: 10%;
+}
+
+.closeXButton:after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    right: 10%;
+}
+
+.openXButton:after {
+    left: 10%;
+}
+.openXButton::before {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+    left: 10%;
+}
+
+.secondaryModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    height: 90%;
+    width: 60%;
+
+    background-color: var(--blue);
+    border: 2px solid var(--darkBlue);
+    border-radius: 12px;
+
+    padding: 8px;
+
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+.secondaryModal .mTitle {
+    height: unset;
+}
+
+
+option {
+    color: var(--secondaryColor);
+}
+
+
+.secondaryModal h4 {
+    word-break: break-all;
+    padding-right: 5%;
+    max-width: 85%;
+}
+
+
+.defaultText {
+    color: var(--textColor);
+    text-shadow:
+        -1px -1px var(--textShadowFade) var(--secondaryColor),
+        1px -1px var(--textShadowFade) var(--secondaryColor),
+        -1px 1px var(--textShadowFade) var(--secondaryColor),
+        1px 1px var(--textShadowFade) var(--secondaryColor);
+}
+
+.boxRed {
+    background-color: var(--red);
+    border: 2px solid var(--darkRed);
+}
+
+.boxGreen {
+    background-color: var(--green);
+    border: 2px solid var(--darkGreen);
+}
+
+.shadowBlue {
+    box-shadow:
+        var(--boxShadowSize) var(--boxShadowSize) var(--boxShadowFade) var(--darkBlue),
+        var(--boxShadowSizeN) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkBlue),
+        var(--boxShadowSizeN) var(--boxShadowSize) var(--boxShadowFade) var(--darkBlue),
+        var(--boxShadowSize) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkBlue);
+}
+
+.shadowRed {
+    box-shadow:
+        var(--boxShadowSize) var(--boxShadowSize) var(--boxShadowFade) var(--darkRed),
+        var(--boxShadowSizeN) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkRed),
+        var(--boxShadowSizeN) var(--boxShadowSize) var(--boxShadowFade) var(--darkRed),
+        var(--boxShadowSize) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkRed);
+}
+
+.shadowCyan {
+    box-shadow:
+        var(--boxShadowSize) var(--boxShadowSize) var(--boxShadowFade) var(--darkCyan),
+        var(--boxShadowSizeN) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkCyan),
+        var(--boxShadowSizeN) var(--boxShadowSize) var(--boxShadowFade) var(--darkCyan),
+        var(--boxShadowSize) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkCyan);
+}
+
+.shadowGreen {
+    box-shadow:
+      var(--boxShadowSize) var(--boxShadowSize) var(--boxShadowFade) var(--darkGreen),
+      var(--boxShadowSizeN) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkGreen),
+      var(--boxShadowSizeN) var(--boxShadowSize) var(--boxShadowFade) var(--darkGreen),
+      var(--boxShadowSize) var(--boxShadowSizeN) var(--boxShadowFade) var(--darkGreen);
+  }
+
+
+
+.hideScrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.none {
+    display: none;
+}
+
+h4 {
+    margin: 0;
+}
+
+@keyframes popUp {
+    0% {
+        scale: 0;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+.popUpAnim {
+    animation: popUp var(--tweenTime) forwards cubic-bezier(0.1, 1.4, 0.5, 1);
+}
+
+
+
+@media (max-width: 800px) {
+    .overlay {
+        flex-direction: column;
+    }
+
+    .modal {
+        width: calc(90% + (5% * var(--secModalClosed)));
+        height: calc(30% + (65% * var(--secModalClosed)));
+    }
+
+    .secondaryModal {
+        width: 90%;
+        height: 60%;
+    }
+
+}
+
+
+
+.toggleButton {
+    cursor: pointer;
+    position: relative;
+    height: calc(100% - 3px);
+    aspect-ratio: 1 / 1;
+    background-color: var(--transparentColor);
+    border: 2px solid var(--secondaryBgColor);
+    border-radius: 8px 0 0 8px;
+}
+
+.toggleButton:before,
+.toggleButton:after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 10%;
+    background-color: var(--textColor);
+    border-radius: 4px;
+    top: 45%;
+    left: 10%;
+}
+
+/* X mark (default) */
+.toggleButton:before {
+    transform: rotate(45deg);
+}
+
+.toggleButton:after {
+    transform: rotate(-45deg);
+}
+
+/* Keyframes for transitioning from X to Checkmark */
+@keyframes xToCheck {
+    /* 0% {
+        background-color: var(--red);
+        transform: rotate(45deg);
+        width: 80%;
+        top: 45%;
+        left: 10%;
+    } */
+    100% {
+        background-color: var(--green);
+        transform: rotate(-45deg);
+        width: 75%;
+        top: 45%;
+        left: 30%;
+    }
+}
+
+@keyframes xToCheckAfter {
+    /* 0% {
+        background-color: var(--darkRed);
+        transform: rotate(-45deg);
+        width: 80%;
+        top: 45%;
+        left: 10%;
+    } */
+    100% {
+        background-color: var(--darkGreen);
+        transform: rotate(45deg);
+        width: 45%;
+        top: 55%;
+        left: 8%;
+    }
+}
+
+/* Keyframes for transitioning from Checkmark to X */
+@keyframes checkToX {
+    0% {
+        background-color: var(--green);
+        transform: rotate(-45deg);
+        width: 75%;
+        top: 45%;
+        left: 30%;
+    }
+    100% {
+        background-color: var(--red);
+        transform: rotate(45deg);
+        width: 80%;
+        top: 45%;
+        left: 10%;
+    }
+}
+
+@keyframes checkToXAfter {
+    0% {
+        background-color: var(--darkGreen);
+        transform: rotate(45deg);
+        width: 45%;
+        top: 55%;
+        left: 8%;
+    }
+    100% {
+        background-color: var(--darkRed);
+        transform: rotate(-45deg);
+        width: 80%;
+        top: 45%;
+        left: 10%;
+    }
+}
+
+/* When the cIcon class is applied, animate to checkmark */
+.toggleButton.cIcon:before {
+    animation: xToCheck var(--toggleTime) forwards;
+}
+
+.toggleButton.cIcon:after {
+    animation: xToCheckAfter var(--toggleTime) forwards;
+}
+
+/* When the cIcon class is removed, animate back to X mark */
+.toggleButton.xIcon:before {
+    animation: checkToX var(--toggleTime) forwards;
+}
+
+.toggleButton.xIcon:after {
+    animation: checkToXAfter var(--toggleTime) forwards;
+}
