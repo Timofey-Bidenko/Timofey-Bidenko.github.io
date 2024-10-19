@@ -443,6 +443,13 @@ body {
 .secondaryModal .mTitle {
     height: unset;
 }
+
+
+option {
+    color: var(--secondaryColor);
+}
+
+
 .secondaryModal h4 {
     word-break: break-all;
     padding-right: 5%;
@@ -533,11 +540,6 @@ h4 {
 
 
 @media (max-width: 800px) {
-    :root {
-        --columnsDefaultSelection: 8;
-        --columnsDefault: 4;
-    }
-
     .overlay {
         flex-direction: column;
     }

@@ -14,23 +14,18 @@
             <div class="mTitle">
                 <h4>My Notes</h4>
             </div>
-            <!-- <div class="mTitle sTitle">
-                <input type="text" placeholder="Search Notes" onkeyup="searchFilter()" class="textShadowCyan"
-                    id="mainSearchInput">
+            <div class="mTitle sTitle">
+                <input type="text" placeholder="Search Notes" onkeyup="searchFilter()" class="textShadowCyan" id="mainSearchInput">
             </div>
             <div class="mTitle sTitle fTitle">
                 <select id="primarySelect" onchange="primarySelectionChange()" class="textShadowCyan">
                     <option value="null">Sort By (Select)</option>
-                    <option value="boost">Boost</option>
-                    <option value="reward">Reward</option>
+                    <option value="comp">Completion Percentage</option>
+                    <option value="date">Date</option>
                 </select>
-                <select id="categorySelect" onchange="categorySelectionChanged()" class="textShadowCyan">
-                    <option value="null">(Select Category)</option>
-                </select>
-                <select id="subCategorySelect" onchange="subCategorySelectionChanged()" class="textShadowCyan">
-                    <option value="null">(Select Subcategory)</option>
-                </select>
-            </div> -->
+                <select id="categorySelect" onchange="sortNotesByParams()" class="textShadowCyan none"></select>
+                <select id="subCategorySelect" onchange="sortNotesByParams()" class="textShadowCyan none"></select>
+            </div>
             <div class="listItem none" id="noteListChildTemplate">
                 <h4 class="defaultText">Note Info</h4>
                 <h4 class="shadowCyan editButton defaultText">Edit</h4>
@@ -46,11 +41,11 @@
                 <div class="button closeXButton shadowRed" id="closeSecondaryModal"></div>
             </div>
             <div class="listItem task name none popUpAnim verified" id="setName">
-                <input type="text" class="searchInput round" placeholder="Note Name">
+                <input type="text" onkeyup="saveCurrentNote(false)" class="searchInput round" placeholder="Note Name">
             </div>
             <div class="listItem task none popUpAnim" id="todoTemplate">
                 <div class="toggleButton xIcon"></div>
-                <input type="text" class="searchInput" placeholder="To-Do Thingy   ( Insert   Text )">
+                <input type="text" onkeyup="saveCurrentNote(false)" class="searchInput" placeholder="To-Do Thingy   ( Insert   Text )">
                 <div class="img"></div>
             </div>
             <div class="listItem functional none popUpAnim" id="addToDo" style="order: 99;">
